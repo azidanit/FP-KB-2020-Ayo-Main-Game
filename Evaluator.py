@@ -1,4 +1,5 @@
 from GameState2 import GameState
+
 class Evaluator():
     def evaluate(self, game_state: GameState , player_now):
         if(game_state.hasWon(player_now)):

@@ -2,7 +2,7 @@ import networkx as nx
 # import matplotlib.pyplot as plt
 
 from collections import defaultdict
-
+#PLAYER2 IS AI value = 1
 class GameState():
     values = []
     player = -1
