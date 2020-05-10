@@ -30,7 +30,7 @@ class Evaluator():
             player_tmp1 = game_state.values[game_state.player][i]
             for y in range(2):
                 player_tmp2 = game_state.values[1-game_state.player][y]
-                if (player_tmp1 + player_tmp2 == 5):
+                if (player_tmp1 + player_tmp2 >= 5):
                     numMakeDead += 1
         value += sign * numMakeDead * 20
 
