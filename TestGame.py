@@ -6,7 +6,7 @@ class TestGame():
         self.evalutor_state = Evaluator()
 
         self.game_states= [
-            GameState(0, 2, 0, 0, 3)
+            GameState(1, 0, 1, 2, 2)
 
             # GameState(0, 3, 3, 2, 4),
             # GameState(0, 0, 3, 2, 4),

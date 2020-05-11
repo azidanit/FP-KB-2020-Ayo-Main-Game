@@ -92,9 +92,9 @@ class AiMove():
                 utility_value[1] = utility_value[3] = None
 
 
-            if ((ai_left+ai_right) %2) != 0 and probability_move[i].player == 0:
+            if ((ai_left == ai_right) or (((ai_left+ai_right) %2)!=0))  and probability_move[i].player == 0:
                 utility_value[4] = None
-            if ((player_left+player_right) %2) != 0 and probability_move[i].player == 1:
+            if ((player_left == player_right) or ((player_left+player_right) %2) != 0) and probability_move[i].player == 1:
                 utility_value[4] = None
 
             if utility_value[i] is not None:
