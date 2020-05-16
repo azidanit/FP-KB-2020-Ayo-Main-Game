@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'Ui_Form.ui'
+## Form generated from reading UI file 'game_ui_qt.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.2
 ##
@@ -16,33 +16,47 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
 from PySide2.QtWidgets import *
 
 
-class Ui_Form(QObject):
+class Ui_Form(QMainWindow):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(384, 670)
+        Form.resize(380, 670)
         self.home_frame = QFrame(Form)
         self.home_frame.setObjectName(u"home_frame")
-        self.home_frame.setGeometry(QRect(54, 253, 271, 171))
+        self.home_frame.setGeometry(QRect(20, -7, 351, 681))
         self.home_frame.setFrameShape(QFrame.StyledPanel)
         self.home_frame.setFrameShadow(QFrame.Raised)
         self.formLayout = QFormLayout(self.home_frame)
         self.formLayout.setObjectName(u"formLayout")
-        self.start_button = QPushButton(self.home_frame)
+        self.verticalSpacer = QSpacerItem(20, 22, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.formLayout.setItem(4, QFormLayout.LabelRole, self.verticalSpacer)
+
+        self.verticalSpacer_2 = QSpacerItem(20, 144, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.formLayout.setItem(2, QFormLayout.LabelRole, self.verticalSpacer_2)
+
+        self.logo_label = QLabel(self.home_frame)
+        self.logo_label.setObjectName(u"logo_label")
+        self.logo_label.setMinimumSize(QSize(0, 80))
+
+        self.formLayout.setWidget(1, QFormLayout.SpanningRole, self.logo_label)
+
+        self.start_button = QLabel(self.home_frame)
         self.start_button.setObjectName(u"start_button")
-        self.start_button.setMinimumSize(QSize(0, 55))
+        self.start_button.setMinimumSize(QSize(0, 65))
 
-        self.formLayout.setWidget(0, QFormLayout.SpanningRole, self.start_button)
+        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.start_button)
 
-        self.verticalSpacer = QSpacerItem(20, 44, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.formLayout.setItem(1, QFormLayout.LabelRole, self.verticalSpacer)
-
-        self.exit_button = QPushButton(self.home_frame)
+        self.exit_button = QLabel(self.home_frame)
         self.exit_button.setObjectName(u"exit_button")
-        self.exit_button.setMinimumSize(QSize(0, 55))
+        self.exit_button.setMinimumSize(QSize(0, 65))
 
-        self.formLayout.setWidget(2, QFormLayout.SpanningRole, self.exit_button)
+        self.formLayout.setWidget(5, QFormLayout.FieldRole, self.exit_button)
+
+        self.verticalSpacer_3 = QSpacerItem(20, 65, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.formLayout.setItem(0, QFormLayout.LabelRole, self.verticalSpacer_3)
 
         self.ingame_frame = QFrame(Form)
         self.ingame_frame.setObjectName(u"ingame_frame")
@@ -61,13 +75,13 @@ class Ui_Form(QObject):
         self.player_left.setGeometry(QRect(8, 399, 161, 271))
         self.player_left.setFont(font)
         self.player_left.setAlignment(Qt.AlignCenter)
-        self.label = QLabel(self.ingame_frame)
-        self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(10, 300, 341, 91))
+        self.status_game_label = QLabel(self.ingame_frame)
+        self.status_game_label.setObjectName(u"status_game_label")
+        self.status_game_label.setGeometry(QRect(10, 300, 341, 91))
         font1 = QFont()
         font1.setPointSize(22)
-        self.label.setFont(font1)
-        self.label.setAlignment(Qt.AlignCenter)
+        self.status_game_label.setFont(font1)
+        self.status_game_label.setAlignment(Qt.AlignCenter)
         self.ai_right = QLabel(self.ingame_frame)
         self.ai_right.setObjectName(u"ai_right")
         self.ai_right.setGeometry(QRect(190, 1, 161, 271))
@@ -78,8 +92,19 @@ class Ui_Form(QObject):
         self.player_right.setGeometry(QRect(190, 399, 161, 271))
         self.player_right.setFont(font)
         self.player_right.setAlignment(Qt.AlignCenter)
+        self.exit_button_ingame = QLabel(self.ingame_frame)
+        self.exit_button_ingame.setObjectName(u"exit_button_ingame")
+        self.exit_button_ingame.setGeometry(QRect(0, 330, 31, 31))
+        self.bg_label = QLabel(Form)
+        self.bg_label.setObjectName(u"bg_label")
+        self.bg_label.setGeometry(QRect(0, 0, 384, 680))
+        self.move_label = QLabel(Form)
+        self.move_label.setObjectName(u"move_label")
+        self.move_label.setGeometry(QRect(0, 0, 401, 16))
+        self.bg_label.raise_()
         self.ingame_frame.raise_()
         self.home_frame.raise_()
+        self.move_label.raise_()
 
         self.retranslateUi(Form)
 
@@ -88,12 +113,16 @@ class Ui_Form(QObject):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
+        self.logo_label.setText(QCoreApplication.translate("Form", u"LOGO", None))
         self.start_button.setText(QCoreApplication.translate("Form", u"START", None))
         self.exit_button.setText(QCoreApplication.translate("Form", u"EXIT", None))
         self.ai_left.setText(QCoreApplication.translate("Form", u"1", None))
         self.player_left.setText(QCoreApplication.translate("Form", u"1", None))
-        self.label.setText(QCoreApplication.translate("Form", u"PILIH TANGAN LAWAN", None))
+        self.status_game_label.setText(QCoreApplication.translate("Form", u"PILIH TANGAN LAWAN", None))
         self.ai_right.setText(QCoreApplication.translate("Form", u"1", None))
         self.player_right.setText(QCoreApplication.translate("Form", u"1", None))
+        self.exit_button_ingame.setText(QCoreApplication.translate("Form", u"EXIT", None))
+        self.bg_label.setText("")
+        self.move_label.setText("")
     # retranslateUi
 

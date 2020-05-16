@@ -9,7 +9,7 @@ class AiMove():
         best_util = None;
 
         for i in range(len(prob_state)):
-            best_util = None;
+            best_util = None
             if util_value[i] is not None:
                 util_value2, prob_state2 = self.tapToAll(prob_state[i])
                 print("iter ke i",i)
@@ -25,6 +25,8 @@ class AiMove():
                 if best_util is not None and best_util < util_value[i]:
                     print("pindah dari ",util_value[i], " util ke ", best_util)
                     util_value[i] = best_util
+
+        # for i
 
         best_finger = None
         best_util = None

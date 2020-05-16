@@ -17,6 +17,11 @@ class TheGame(QObject):
         self.game_mtx = Lock()
         self.game_states = GameState(0, 1, 1, 1, 1)
 
+    def resetState(self):
+        self.game_mtx.acquire()
+        self.game_states = GameState(0, 1, 1, 1, 1)
+        self.game_mtx.release()
+
     @Slot(int)
     def playGame(self, val):
         self.evalutor_state = Evaluator()
@@ -33,6 +38,7 @@ class TheGame(QObject):
             ai_left = self.game_states.values[1][0]
             ai_right = self.game_states.values[1][1]
             # val = input("masukan")
+            self.game_mtx.acquire()
             if val == 0:
                 # print("Masuk")
                 self.game_states =(
@@ -51,7 +57,7 @@ class TheGame(QObject):
                     self.game_states =(
                         GameState(1, int((player_left + player_right) / 2), int((player_left + player_right) / 2),
                                   ai_left, ai_right))
-
+            self.game_mtx.release()
             print("\n------------------------YOU CHOOSE : ")
             self.game_states.print()
             self.resultStateSignal.emit(self.game_states)
@@ -60,6 +66,7 @@ class TheGame(QObject):
             print("AI TURN")
             self.finger, self.util, self.state = self.Ai.predictMove(self.game_states)
             self.state.print()
+
             self.game_states = self.state
 
             if self.util >= 10000:
