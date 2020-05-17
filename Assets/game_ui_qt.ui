@@ -68,19 +68,6 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
-     <widget class="QLabel" name="start_button">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>65</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>START</string>
-      </property>
-     </widget>
-    </item>
     <item row="5" column="1">
      <widget class="QLabel" name="exit_button">
       <property name="minimumSize">
@@ -106,6 +93,19 @@
        </size>
       </property>
      </spacer>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLabel" name="start_button">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>65</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>START</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -170,7 +170,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>300</y>
+      <y>301</y>
       <width>341</width>
       <height>91</height>
      </rect>
@@ -269,10 +269,94 @@
     <string/>
    </property>
   </widget>
+  <widget class="QFrame" name="lose_frame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>381</width>
+     <height>681</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QFormLayout" name="formLayout_2">
+    <item row="1" column="0" colspan="2">
+     <widget class="QLabel" name="lose_label">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>120</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" colspan="2">
+     <widget class="QLabel" name="play_again_label">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>66</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0" colspan="2">
+     <widget class="QLabel" name="menu_label">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>65</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <spacer name="verticalSpacer_4">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>170</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="4" column="0">
+     <spacer name="verticalSpacer_5">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>170</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
   <zorder>bg_label</zorder>
   <zorder>ingame_frame</zorder>
   <zorder>home_frame</zorder>
   <zorder>move_label</zorder>
+  <zorder>lose_frame</zorder>
  </widget>
  <resources/>
  <connections/>

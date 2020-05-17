@@ -1,6 +1,7 @@
+import time
 from threading import Lock
 
-from PySide2.QtCore import QObject, QThread, Slot, Signal
+from PySide2.QtCore import QObject, QThread, Slot, Signal, QTimer
 
 from GameState2 import GameState
 from Evaluator import Evaluator
@@ -10,6 +11,10 @@ from AiMove10 import AiMove
 class TheGame(QObject):
     resultGameSignal = Signal(int)
     resultStateSignal = Signal(object)
+    resultAiSignal = Signal(object)
+    resultPlayerSignal = Signal(object)
+    resultLoseSignal = Signal(object)
+    animateAiSignal = Signal(int)
 
     def __init__(self):
         super().__init__()
@@ -25,7 +30,7 @@ class TheGame(QObject):
     @Slot(int)
     def playGame(self, val):
         self.evalutor_state = Evaluator()
-
+        print("------------------PLAY PALY------YOU CHOOSE : ")
         self.Ai = AiMove()
         self.finger = None
         self.util = None
@@ -60,20 +65,30 @@ class TheGame(QObject):
             self.game_mtx.release()
             print("\n------------------------YOU CHOOSE : ")
             self.game_states.print()
-            self.resultStateSignal.emit(self.game_states)
-        # else:
-        if True:
-            print("AI TURN")
-            self.finger, self.util, self.state = self.Ai.predictMove(self.game_states)
-            self.state.print()
 
-            self.game_states = self.state
+            self.resultPlayerSignal.emit(self.game_states)
 
-            if self.util >= 10000:
-                print("AI WIN, YOU LOOSE!")
-                # break
 
-        self.resultStateSignal.emit(self.game_states)
+    def playGameAi(self):
+        print("AI TURN")
+        self.finger, self.util, self.state = self.Ai.predictMove(self.game_states)
+        self.state.print()
+
+        self.game_states = self.state
+        print("--------FINGER AI ",self.finger)
+        if self.util >= 10000:
+            print("AI WIN, YOU LOOSE!")
+            self.game_states.values[2].append(self.finger)
+
+            self.resultAiSignal.emit(self.game_states)
+
+            self.resultLoseSignal.emit(self.game_states)
+        else:
+            # self.animateAiSignal.emit(self.finger)
+            self.game_states.values[2].append(self.finger)
+
+            self.resultAiSignal.emit(self.game_states)
+
 # if __name__ == '__main__':
 #     test_game = TheGame()
 #     test_game.testFourBoards()
