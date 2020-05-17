@@ -4,6 +4,7 @@ from threading import Thread
 from PySide2 import QtWidgets, QtGui, QtCore
 from PySide2.QtCore import Slot, Signal, QPoint, QPropertyAnimation, QRect, QEasingCurve, QObject, QTimer
 from PySide2.QtGui import Qt, QTransform, QImage, QPixmap
+from PySide2.QtMultimedia import QSound
 
 from Assets.game_ui_qt import Ui_Form, QGraphicsOpacityEffect, QLabel
 from TheGame import TheGame
@@ -54,6 +55,9 @@ class GameGui(Ui_Form):
         self.clicked_player = ""
 
     def connectWidget(self):
+        self.move_label.mousePressEvent = self.label_moveClicked
+        self.move_label.mouseMoveEvent = self.label_moveMove
+        self.move_label.setEnabled(True)
         self.start_button.mousePressEvent = self.startButtonClicked
         self.exit_button.mousePressEvent = self.closeEvent
 
@@ -75,8 +79,8 @@ class GameGui(Ui_Form):
         self.the_game.resultPlayerSignal.connect(self.stateResultCallbackPlayer)
         self.the_game.resultLoseSignal.connect(self.playerLose)
 
-        self.move_label.mousePressEvent = self.label_moveClicked
-        self.move_label.mouseMoveEvent = self.label_moveMove
+
+        self.move_label.raise_()
 
     def hoverPlayerLeft(self, event):
         self.scaleWidgetTo(self.player_left,1.2)
@@ -124,12 +128,24 @@ class GameGui(Ui_Form):
 
         self.ingame_frame.hide()
         self.home_frame.raise_()
+        self.move_label.raise_()
         # self.ai_left.setText("")
         # self.ai_right.setText("")
         self.moveWidgetTo(self.status_game_label,400,0)
         self.exit_button_ingame.setPixmap(QPixmap("Assets/Background dll/Exit.png"))
         self.exit_button_ingame.setScaledContents(True)
         self.exit_button_ingame.hide()
+
+        self.audio_main_menu = QSound("Assets/Audio/menu.wav")
+        # self.audio_main_menu.
+        self.audio_main_menu.setLoops(QSound.Infinite)
+        self.audio_main_menu.play()
+
+        self.audio_lose = QSound("Assets/Audio/lose.wav")
+        self.audio_lose.setLoops(False)
+        # self.audio_lose.play()
+
+        # self.move_label.setStyleSheet("background-color:rgb(22,22,22)")
 
     @Slot(object)
     def stateResultCallback(self, game_state: GameState):
@@ -148,8 +164,12 @@ class GameGui(Ui_Form):
         # self.animMoveWidget(self.lose_frame,0,800,700,QEasingCurve.InExpo)
         pass
 
+
+
     @Slot(object)
     def playerLose(self, game_state):
+        self.audio_main_menu.stop()
+        self.audio_lose.play()
         self.changeAiLeftHandTo(game_state.values[1][0])
         self.changeAiRightHandTo(game_state.values[1][1])
         self.changePlayerLeftHandTo(game_state.values[0][0])
@@ -471,6 +491,8 @@ class GameGui(Ui_Form):
         pass
 
     def menuClicked(self, event):
+        self.audio_lose.stop()
+        self.audio_main_menu.play()
         print("MENU CLICKED")
         self.changeAiLeftHandTo(1)
         self.changeAiRightHandTo(1)
@@ -486,9 +508,11 @@ class GameGui(Ui_Form):
     pass
 
     def label_moveClicked(self, event):
+        # print("EMIT CLICK MOVE")
         self.oldPos = event.globalPos()
 
     def label_moveMove(self, event):
+        # print("EMIT MOVE")
         delta = QPoint(event.globalPos() - self.oldPos)
         # print(delta)
         self.move(self.x() + delta.x(), self.y() + delta.y())

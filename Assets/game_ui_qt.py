@@ -100,7 +100,7 @@ class Ui_Form(QMainWindow):
         self.bg_label.setGeometry(QRect(0, 0, 384, 680))
         self.move_label = QLabel(Form)
         self.move_label.setObjectName(u"move_label")
-        self.move_label.setGeometry(QRect(0, 0, 401, 16))
+        self.move_label.setGeometry(QRect(0, 0, 401, 20))
         self.lose_frame = QFrame(Form)
         self.lose_frame.setObjectName(u"lose_frame")
         self.lose_frame.setGeometry(QRect(0, 0, 381, 681))
