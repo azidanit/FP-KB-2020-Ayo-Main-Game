@@ -8,7 +8,7 @@ class AiMove():
         prob_state_iter = prob_state.copy()
         best_util = None;
 
-        for iterr in range(0):
+        for iterr in range(1):
             for i in range(len(prob_state_iter)):
                 best_util = None
                 if util_value[i] is not None:
@@ -29,6 +29,22 @@ class AiMove():
             prob_state_iter = prob_state2.copy()
 
         # for i
+        for i in range(len(prob_state_iter)):
+            best_util = None
+            if util_value2[i] is not None:
+                util_value3, prob_state2 = self.tapToAll(prob_state_iter[i])
+                print("iter ke i", i)
+                for y in range(len(util_value3)):
+                    if util_value3[y] is not None:
+                        if best_util is None:
+                            best_util = util_value3[y]
+                        elif best_util < util_value3[y]:
+                            best_util = util_value3[y]
+                print("Minim UTIL kecil", best_util)
+
+                if best_util is not None and best_util < util_value2[i]:
+                    print("pindah dari ", util_value2[i], " util ke ", best_util)
+                    util_value2[i] = best_util
 
 
         best_finger = None

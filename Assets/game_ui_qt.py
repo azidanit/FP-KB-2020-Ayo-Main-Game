@@ -103,7 +103,7 @@ class Ui_Form(QMainWindow):
         self.move_label.setGeometry(QRect(0, 0, 401, 20))
         self.lose_frame = QFrame(Form)
         self.lose_frame.setObjectName(u"lose_frame")
-        self.lose_frame.setGeometry(QRect(0, 0, 381, 681))
+        self.lose_frame.setGeometry(QRect(0, 0, 389 , 681))
         self.lose_frame.setFrameShape(QFrame.StyledPanel)
         self.lose_frame.setFrameShadow(QFrame.Raised)
         self.formLayout_2 = QFormLayout(self.lose_frame)
